@@ -2,6 +2,7 @@
 
 import math
 
+coefficientInput = float(0)
 
 def get_input(message, data_type=float):
     while True:
@@ -18,10 +19,10 @@ def stall_speed_calculator(weight_lbs, wing_area_sq_inches):
     density_sea_level = 0.002377  # slugs/ft³
     wings_area_sq_feet = wing_area_sq_inches / 144.0
     weight_lbs_force = weight_lbs  # 1 lb weight = 1 lb force at the Earth's surface
-    coefficient_lift_max = 1.5  # typical value for general aviation aircraft
+    coefficient_lift_max = coefficientInput 
 
     # Stall speed formula
-    stall_speed_sq_feet = (2 * weight_lbs_force) / (density_sea_level * wings_area_sq_feet * coefficient_lift_max)
+    stall_speed_sq_feet = (2 * weight_lbs_force) / (density_sea_level * wings_area_sq_feet * float(coefficient_lift_max))
     stall_speed_feet = math.sqrt(stall_speed_sq_feet)
 
     # Convert stall speed to knots
@@ -32,9 +33,11 @@ def stall_speed_calculator(weight_lbs, wing_area_sq_inches):
 
 def main():
     print("Stall Speed Calculator")
+    global coefficientInput
 
     weight_lbs = get_input("Enter the aircraft weight in pounds: ")
     wing_area_sq_inches = get_input("Enter the wing area in square inches: ")
+    coefficientInput = input("Enter the lift coefficient: ")
 
     stall_speed_knots = stall_speed_calculator(weight_lbs, wing_area_sq_inches)
 
